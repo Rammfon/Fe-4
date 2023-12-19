@@ -11,6 +11,7 @@ import LoadingSpinner from './LoadingSpinner';
 import { v4 as uuidv4 } from 'uuid';
 
 import api from './ApiWrapper'; 
+import { useTranslation } from "react-i18next";
 
 
 const ShoppingListDetail = () => {
@@ -29,7 +30,7 @@ const ShoppingListDetail = () => {
   const [currentName, setCurrentName] = useState(null);
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
-
+  const { t } = useTranslation();
   useEffect(() => {
     const fetchShoppingList = async () => {
       try {
@@ -159,8 +160,8 @@ const handleLeave = async () => {
   return (
     <div className="shoppinglistdetail">
       <div>
-        <button className="button" onClick={() => setViewMode("vlastník")}>Zobrazit jako vlastník</button>
-        <button className="button" onClick={() => setViewMode("člen")}>Zobrazit jako člen</button>
+        <button className="button" onClick={() => setViewMode("vlastník")}>{t("viewAsOwner")}</button>
+        <button className="button" onClick={() => setViewMode("člen")}>{t("viewAsMember")}</button>
       </div>
 
       {editingName ? (
@@ -169,17 +170,17 @@ const handleLeave = async () => {
         <h1>
           {shoppingList?.name}
           {isOwner && viewMode === "vlastník" && !editingName && (
-            <button className="button" onClick={() => handleEditClick()}>Editovat</button>
+            <button className="button" onClick={() => handleEditClick()}>{t("edit")}</button>
           )}
           {isOwner && viewMode === "vlastník" && (
-            <button className="button" onClick={() => setAddingMember(true)}>Přidat člena</button>
+            <button className="button" onClick={() => setAddingMember(true)}>{t("addMember")}</button>
           )}
 
           {addingMember && isOwner && viewMode === "vlastník" && <AddMember onAddMember={handleAddMember} />}
         </h1>
       )}
 
-      <h2>Členové nákupního seznamu:</h2>
+      <h2>{t("listMembers")}</h2>
       <ul className="memberlist">
         {shoppingList?.members.map((member, index) => (
           <li key={index} className="memberitem">
@@ -194,25 +195,25 @@ const handleLeave = async () => {
       </ul>
 
       <div>
-        <button className="button" onClick={() => setShowFilters(!showFilters)}>Filtry</button>
+        <button className="button" onClick={() => setShowFilters(!showFilters)}>{t("filter")}</button>
       </div>
 
       {showFilters && (
         <div>
-          <button className="button" onClick={() => setSelectedStatus("vše")}>Vše</button>
-          <button className="button" onClick={() => setSelectedStatus("vyřešená")}>Vyřešené</button>
-          <button className="button" onClick={() => setSelectedStatus("nevyřešená")}>Nevyřešené</button>
+          <button className="button" onClick={() => setSelectedStatus("vše")}>{t("all")}</button>
+          <button className="button" onClick={() => setSelectedStatus("vyřešená")}>{t("resolved")}</button>
+          <button className="button" onClick={() => setSelectedStatus("nevyřešená")}>{t("unresolved")}</button>
         </div>
       )}
 
-      <h2>Položky seznamu:</h2>
+      <h2>{t("listItems")}</h2>
       <ul>
   {shoppingList?.items
     .filter((item) => selectedStatus === "vše" || item.resolved === (selectedStatus === "vyřešená"))
     .map((item) => (
-      <li key={item.itemId} style={{ color: item.resolved ? "green" : "black" }}>
+      <li key={item.itemId}  >
         <span>
-          {item.itemName} ({item.resolved ? "vyřešeno" : "nevyřešeno"})
+          {item.itemName} ({item.resolved ? t("resolved") : t("unresolved")})
         </span>
         <input
           type="checkbox"
@@ -226,7 +227,7 @@ const handleLeave = async () => {
     ))}
 </ul>
 
-      {isOwner && <button className="button" onClick={() => setAddingItem(true)}>Přidat položku</button>}
+      {isOwner && <button className="button" onClick={() => setAddingItem(true)}>{t("addItem")}</button>}
       {addingItem && isOwner && <AddItem onAddItem={handleAddItem} />}
     </div>
   );

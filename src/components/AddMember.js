@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
+import { useTranslation } from "react-i18next";
 const AddMember = ({ onAddMember }) => {
   const [newMember, setNewMember] = useState("");
-
+  const { t } = useTranslation();
   const handleAddClick = () => {
     if (newMember.trim() !== "") {
       onAddMember(newMember);
@@ -14,11 +14,11 @@ const AddMember = ({ onAddMember }) => {
     <div>
       <input
         type="text"
-        placeholder="Jméno nového člena"
+        placeholder={t("nameNewMember")}
         value={newMember}
         onChange={(e) => setNewMember(e.target.value)}
       />
-      <button className="button" onClick={handleAddClick}>Přidat</button>
+      <button className="button" onClick={handleAddClick}>{t("Add")}</button>
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import React from 'react';
-
+import { useTranslation } from 'react-i18next';
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <div className='footer'>
     <p>
-        Všechna práva vyhrazena @2023
+        {t("allrights")}
     </p>
     </div>
   );

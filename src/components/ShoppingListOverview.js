@@ -5,8 +5,10 @@ import mockup from '../Data/Mockup';
 import ShoppingListThumbnail from './ShoppingListThumbNail';
 import CreateListModal from './CreateListModal';
 import api from "./ApiWrapper"
-
+import { useTranslation } from 'react-i18next';
 const ShoppingListOverview = () => {
+  const { t } = useTranslation();
+
   const shoppingListsData = mockup.shoppingLists; 
   const [shoppingLists, setShoppingLists] = useState(shoppingListsData);
   const [showArchived, setShowArchived] = useState(false);
@@ -125,21 +127,21 @@ const ShoppingListOverview = () => {
   return (
     <div className="shopping-list-overview">
       <div>
-        <button onClick={handleToggleShowArchived}>
-          {showArchived ? 'Skrýt archivované' : 'Zobrazit archivované'}
-        </button>
+      <button onClick={handleToggleShowArchived}>
+  {showArchived ? t('showArchivedhide') : t('showArchivedshow')}
+</button>
 
         {owners.map((owner) => (
-          <button
+          <button className='button'
             key={owner}
             onClick={() => handleOwnerChange(owner)}
-            style={{ backgroundColor: lastClickedButton === owner ? 'lightblue' : 'whitesmoke' }}
+            
           >
             {owner}
           </button>
         ))}
       </div>
-      <h1>Všechny nákupní seznamy</h1>
+      <h1>{t('h1overview')}</h1>
       <CreateListModal onCreateList={handleCreateList} toggleModal={toggleModal} isModalOpen={isModalOpen} user={currentUser} />
       <ul>
       {shoppingLists
@@ -147,8 +149,8 @@ const ShoppingListOverview = () => {
   .map((list) => {
     console.log(list);
     return (
-      <li key={list.id}>
-        <ShoppingListThumbnail
+      <li key={list.id} className='listShoppingList'>
+        <ShoppingListThumbnail 
           list={list}
           user={currentUser}
           onDeleteList={handleDeleteList}

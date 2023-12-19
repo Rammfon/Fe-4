@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "./CreateListModal.css";
 import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from 'react-i18next';
 
 export default function CreateListModal({ onCreateList, toggleModal, isModalOpen, user }) {
+  const { t } = useTranslation();
   const [listName, setListName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSaveList = async () => {
     if (!listName.trim()) {
-      setErrorMessage('Nemáte vyplněný název seznamu.');
+      setErrorMessage(t("createListError"));
       return;
     }
 
@@ -42,24 +44,24 @@ export default function CreateListModal({ onCreateList, toggleModal, isModalOpen
   return (
     <>
       <button onClick={toggleModal} className="btn-modal">
-        Vytvořit nový seznam
+        {t("createNewList")}
       </button>
 
       {isModalOpen && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <h2>Nový seznam</h2>
+            <h2>{t("newList")}</h2>
             <input
               type="text"
               id="listName"
-              placeholder="Název seznamu"
+              placeholder={t("listNamePlaceholder")}
               value={listName}
               onChange={handleInputChange}
             />
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <button className="close-modal" onClick={handleSaveList}>
-              Uložit
+            {t("save")}
             </button>
           </div>
         </div>

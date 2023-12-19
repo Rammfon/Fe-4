@@ -1,88 +1,256 @@
-button {
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+.content {
+  flex-grow: 1;
+  
+}
+
+.container {
+    
+  width: 100%; 
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+    
+    }
+
+
+
+
+ 
+.header{
+height:auto;
+padding: 10px;
+width: 100%; 
+text-align: center;
+   
+box-sizing: border-box;
+font-size: 24px;
+}
+  
+
+
+.shopping-list-thumbnail {
+  border: 1px solid #000000;
+  
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  width: 45%; /* Zvětšete šířku pro velké obrazovky */
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ 
+
+}
+
+.listShoppingList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.shoppinglistdetail {
+  width: 70%; 
+  margin: 0 auto; 
+  padding: 20px; 
+  box-sizing: border-box;
+    
+  }
+  
+.memberlist {
+list-style: none;
+ padding: 0;
+}
+
+.memberitem {
+margin-bottom: 5px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+  
+.switch {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left:  90%;
+}
+
+  .switch label {
+    margin: 10px;
+    margin-bottom: 10px;
+  }
+
+
+  
+
+  .shopping-list-overview h1 {
+    margin-left: 20px;
+    margin-top: 30px;
+  }
+
+
+  .shopping-list-thumbnail h2 {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+  }
+  
+  .shopping-list-thumbnail p {
+    margin: 8px 0;
+  }
+
+  .footer {
+    flex-shrink: 0;
+   width: 100%;
+   padding: 10px;
+   text-align: center;
+   }
+   
+   button {
 
     font-size: auto;
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
+    height: auto;
+    width: auto;
+    cursor: pointer;
+    
+      }  
+        
+
+  #light .shopping-list-thumbnail {
+    background-color:rgb(252, 229, 103);
+  }
+
+  #dark .shopping-list-thumbnail {
+    background-color: rgb(0, 0, 0);
+  }
+  
+.shopping-list-overview h1 {
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+
+.shopping-list-thumbnail h2 {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.shopping-list-thumbnail p {
+  margin: 8px 0;
+}
+
+
+
+#light .shopping-list-thumbnail {
+  background-color:rgb(252, 229, 103);
+}
+
+#dark .shopping-list-thumbnail {
+  background-color: rgb(0, 0, 0);
+}
+
+
+
+  #light {
+    background-color: #FFFFE0;
+  }
+  
+  #light .header {
+    background-color: #f1aef3;
+  }
+  #light .footer {
+    background-color: #f1aef3;
+  }
+
+  #light button {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     background-color:whitesmoke ;
     transition: background-color 0.3s ease;
-    height: auto;
-   width: auto;
-   cursor: pointer;
-
-  }  
-    
-  button:hover {
-    background-color: pink; 
-  }
-  
- .home {
-  flex-direction: column;
- }
-  
-  .content {
-    flex-grow: 1;
   }
 
-  .container {
-    
-    width: 100%; 
-    
-    font-family: 'Arial', sans-serif;
-    background-color: #FFFFE0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  
+  #dark {
+    background-color: rgb(80, 27, 129);
+  }
+
+
+
+  #dark .header {
+    background-color: #1c0a1d;
+  }
+  #dark .footer {
+    background-color: #1c0a1d;
+  }
+
+  #dark button {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    background-color:rgb(99, 96, 96) ;
+    color: rgb(190, 188, 188);
+    transition: background-color 0.3s ease;
+  }
+
+  #dark p {
+    color: rgb(190, 188, 188);
    
+    
   }
 
-  .footer {
- 
-    flex-shrink: 0;
-   
-     width: 100%;
-     background-color: pink;
-     padding: 10px;
-     text-align: center;
-   }
+  #dark h1 {
+    color: rgb(190, 188, 188);
+  }
 
-   .header{
-    background-color: pink;
-    height:auto;
-    padding: 10px;
-    width: 100%; 
-    text-align: center;
-   
-    box-sizing: border-box;
-    font-size: 24px;
+  #dark h2 {
+    color: rgb(190, 188, 188);
   }
   
+
+  #dark ul {
+    color: rgb(190, 188, 188);
+  }
+
+
+  
+  #light .switch label {
+    color: black;
+  }
+  
+  #dark .switch label {
+    color: rgb(190, 188, 188);
+  }
+
+  @media (max-width: 600px) {
+    .shopping-list-thumbnail {
+        width: 100%; /* Přizpůsobit šířku dlaždice pro menší obrazovky */
+        float: none; /* Zrušit zarovnání, aby dlaždice byly pod sebou */
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .shoppinglistdetail {
+      flex-direction: column; /* Přepněte na sloupcový layout na menších obrazovkách */
+    }
+  
+    .shopping-list-thumbnail {
+      width: 100%; /* Nastavte na 100% šířky na menších obrazovkách */
+    }
+  }
+
+  @media (max-width: 912px) {
   .shoppinglistdetail {
-    width: 70%; 
-    margin: 0 auto; 
-    padding: 20px; 
-    box-sizing: border-box;
+    flex-direction: column; /* Přepněte na sloupcový layout na menších obrazovkách */
+  
   
   }
-  
-  .memberlist {
-      list-style: none;
-      padding: 0;
-      
-  
+
+  .shopping-list-thumbnail {
+    width: 100%; /* Nastavte na 100% šířky na menších obrazovkách */
   }
-  
-  .memberitem {
-      margin-bottom: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-     
-  }
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+}

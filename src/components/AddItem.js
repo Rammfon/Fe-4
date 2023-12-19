@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-
+import { useTranslation } from "react-i18next";
 const AddItem = ({ onAddItem }) => {
   const [newItem, setNewItem] = useState("");
-
+  const { t } = useTranslation();
   const handleAddClick = () => {
     console.log("New Item Name:", newItem);
 
@@ -23,11 +23,11 @@ const AddItem = ({ onAddItem }) => {
     <div>
       <input
         type="text"
-        placeholder="Název nové položky"
+        placeholder={t("createItemPlaceholder")}
         value={newItem}
         onChange={(e) => setNewItem(e.target.value)}
       />
-      <button className="button" onClick={handleAddClick}>Přidat položku</button>
+      <button className="button" onClick={handleAddClick}>{t("createItemButton")}</button>
     </div>
   );
 };

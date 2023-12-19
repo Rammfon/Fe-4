@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-
+import { useTranslation } from "react-i18next";
 const EditShoppingListName = ({ currentName, onSave }) => {
   const [newName, setNewName] = useState(currentName);
-
+  const { t } = useTranslation();
  
   useEffect(() => {
     setNewName(currentName);
@@ -18,9 +18,9 @@ const EditShoppingListName = ({ currentName, onSave }) => {
         type="text"
         value={newName}
         onChange={(e) => setNewName(e.target.value)}
-        placeholder="Nový název seznamu"
+        placeholder={t("newNameList")}
       />
-      <button onClick={handleSave}>Uložit</button>
+      <button onClick={handleSave}>{t("save")}</button>
     </div>
   );
 };

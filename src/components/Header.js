@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
-
+import { useTranslation } from "react-i18next";
 import shoppingLists from '../Data/Mockup';
 
 const Header = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const currentUrl = location.pathname
 
@@ -20,7 +21,7 @@ const Header = () => {
       <h1>ShoppMate</h1>
       {shouldShowButton && (
         <Link to={`/`}>
-          <button className='home'>Zpět na hlavní stránku</button>
+          <button className='home'>{t("homepage")}</button>
         </Link>
        )}
     

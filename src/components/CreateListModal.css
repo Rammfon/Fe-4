@@ -30,7 +30,7 @@ body.active-modal {
     left: 50%;
     transform: translate(-50%, -50%);
     line-height: 1.4;
-    background: #f1f1f1;
+   
     padding: 14px 28px;
     border-radius: 3px;
     max-width: 600px;
@@ -42,4 +42,14 @@ body.active-modal {
     top: 10px;
     right: 10px;
     padding: 5px 7px;
+}
+
+
+#light .modal-content {
+    background: #f1f1f1;
+    background-color: #f1f1f1;
+}
+
+#dark .modal-content {
+    background-color: rgb(80, 27, 129);
 }

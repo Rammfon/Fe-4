@@ -2,15 +2,20 @@
   "name": "shoppmate-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.2",
+    "i18next": "^23.7.11",
+    "i18next-browser-languagedetector": "^7.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^13.5.0",
     "react-router-dom": "^6.19.0",
     "react-scripts": "5.0.1",
+    "react-switch": "^7.0.0",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -27,7 +32,7 @@
     ]
   },
   "browserslist": {
-    "production": [ 
+    "production": [
       ">0.2%",
       "not dead",
       "not op_mini all"
@@ -42,9 +47,7 @@
     "@babel/plugin-syntax-jsx": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@testing-library/react": "^14.1.2",
-    "jest": "^27.5.1" 
-    
-    
+    "jest": "^27.5.1"
   },
   "jest": {
     "transform": {

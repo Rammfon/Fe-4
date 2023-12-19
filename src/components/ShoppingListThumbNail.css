@@ -1,39 +1,5 @@
 
-.shopping-list-overview {
-    display: flexbox;
-    flex-wrap: wrap; 
-    justify-content: space-between; 
-  }
 
-  .shopping-list-overview h1 {
-    margin-left: 20px;
-    margin-top: 30px;
-  }
 
-.shopping-list-thumbnail {
-    border: 1px solid #000000;
+
   
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px;
-    width: 30%;
-    height: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color:rgb(252, 229, 103);
-  }
-  
-  .shopping-list-thumbnail h2 {
-    font-size: 1.2em;
-    margin-bottom: 8px;
-  }
-  
-  .shopping-list-thumbnail p {
-    margin: 8px 0;
-  }
-  
-  @media (max-width: 600px) {
-    .shopping-list-thumbnail {
-        width: 100%; /* Přizpůsobit šířku dlaždice pro menší obrazovky */
-        float: none; /* Zrušit zarovnání, aby dlaždice byly pod sebou */
-    }
-}

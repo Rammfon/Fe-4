@@ -12,7 +12,7 @@
 
 .container {
     
-  width: 100%; 
+ 
   font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
@@ -22,15 +22,13 @@
 
 
 
-
  
 .header{
-height:auto;
+
 padding: 10px;
 width: 100%; 
 text-align: center;
-   
-box-sizing: border-box;
+
 font-size: 24px;
 }
   
@@ -38,12 +36,13 @@ font-size: 24px;
 
 .shopping-list-thumbnail {
   border: 1px solid #000000;
+  text-align: center;
   
   border-radius: 8px;
   padding: 16px;
   margin: 16px;
-  width: 45%; /* Zvětšete šířku pro velké obrazovky */
-  height: auto;
+  width: 35%; 
+  
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
  
 
@@ -51,8 +50,10 @@ font-size: 24px;
 
 .listShoppingList {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+
+  flex-wrap: wrap; 
+  justify-content: space-around; 
+  flex-direction: row; 
 }
 
 .shoppinglistdetail {
@@ -78,7 +79,7 @@ justify-content: space-between;
 .switch {
   margin-top: 10px;
   margin-bottom: 10px;
-  margin-left:  90%;
+
 }
 
   .switch label {
@@ -87,7 +88,6 @@ justify-content: space-between;
   }
 
 
-  
 
   .shopping-list-overview h1 {
     margin-left: 20px;
@@ -132,20 +132,7 @@ justify-content: space-between;
     background-color: rgb(0, 0, 0);
   }
   
-.shopping-list-overview h1 {
-  margin-left: 20px;
-  margin-top: 30px;
-}
 
-
-.shopping-list-thumbnail h2 {
-  font-size: 1.2em;
-  margin-bottom: 8px;
-}
-
-.shopping-list-thumbnail p {
-  margin: 8px 0;
-}
 
 
 
@@ -225,32 +212,44 @@ justify-content: space-between;
     color: rgb(190, 188, 188);
   }
 
+
+  
   @media (max-width: 600px) {
     .shopping-list-thumbnail {
-        width: 100%; /* Přizpůsobit šířku dlaždice pro menší obrazovky */
-        float: none; /* Zrušit zarovnání, aby dlaždice byly pod sebou */
+        width: 100%; 
+        float: none; 
     }
   }
 
 
   @media (max-width: 768px) {
     .shoppinglistdetail {
-      flex-direction: column; /* Přepněte na sloupcový layout na menších obrazovkách */
+      flex-direction: column; 
     }
   
     .shopping-list-thumbnail {
-      width: 100%; /* Nastavte na 100% šířky na menších obrazovkách */
+      width: 100%; 
     }
   }
 
   @media (max-width: 912px) {
   .shoppinglistdetail {
-    flex-direction: column; /* Přepněte na sloupcový layout na menších obrazovkách */
+    flex-direction: column; 
   
   
   }
-
+  .switch {
+    margin-left: 0; 
+    width: 100%; 
+  }
   .shopping-list-thumbnail {
-    width: 100%; /* Nastavte na 100% šířky na menších obrazovkách */
+    width: 100%; 
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .shopping-list-thumbnail {
+    width: 60%; 
   }
 }

@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 i18n
-  .use(initReactI18next) // váže react-i18next do i18next
+  .use(initReactI18next) 
   .init({
     resources: {
       en: {
@@ -86,10 +86,10 @@ i18n
       },
     },
    
-    lng: 'en', // výchozí jazyk
-    fallbackLng: 'en', // jazyk, který se použije, pokud není k dispozici překlad
+    lng: 'en', 
+    fallbackLng: 'en', 
     interpolation: {
-      escapeValue: false, // neescapovat speciální znaky
+      escapeValue: false, 
     },
   });
 

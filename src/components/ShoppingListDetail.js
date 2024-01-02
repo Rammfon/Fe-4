@@ -6,13 +6,12 @@ import AddMember from "./AddMember";
 import AddItem from "./AddItem";
 import RemoveItem from "./RemoveItem";
 import { useParams } from 'react-router-dom';
-
 import LoadingSpinner from './LoadingSpinner';
 import { v4 as uuidv4 } from 'uuid';
-
 import api from './ApiWrapper'; 
 import { useTranslation } from "react-i18next";
 
+import { PieChart, Pie, Cell, Legend } from "recharts";
 
 const ShoppingListDetail = () => {
   const [data, setData] = useState(null);
@@ -31,6 +30,8 @@ const ShoppingListDetail = () => {
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
   const { t } = useTranslation();
+
+  
   useEffect(() => {
     const fetchShoppingList = async () => {
       try {
@@ -38,27 +39,22 @@ const ShoppingListDetail = () => {
         setShoppingList(list);
         setLoading(false);
       } catch (error) {
-
         setError(error);
         setLoading(false);
         console.error(`Chyba při předávání dat: ${error.message}`);
       }
     };
-  
+
     fetchShoppingList();
   }, [id]);
 
+  // Resolved items effect
+  useEffect(() => {
+    const newResolvedItems = shoppingList?.items.filter(item => item.resolved);
+    setResolvedItems(newResolvedItems || []);
+  }, [shoppingList?.items]);
 
-  if (loading) {
-    return <LoadingSpinner />; 
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>; 
-  }
-
-
-
+ 
 const handleEditClick = () => {
   setEditingName(true);
 };
@@ -155,6 +151,14 @@ const handleLeave = async () => {
     }
   };
   
+
+ // Vytvoříme data pro koláčový graf
+ const pieChartData = [
+  { name: "Vyřešené", value: resolvedItems.length },
+  { name: "Nevyřešené", value: (shoppingList?.items.length || 0) - resolvedItems.length },
+];
+
+
   console.log(shoppingList);
 
   return (
@@ -229,6 +233,27 @@ const handleLeave = async () => {
 
       {isOwner && <button className="button" onClick={() => setAddingItem(true)}>{t("addItem")}</button>}
       {addingItem && isOwner && <AddItem onAddItem={handleAddItem} />}
+      <PieChart className="Piechart" width={400} height={400}>
+        <Pie
+          dataKey="value"
+          isAnimationActive={false}
+          data={pieChartData}
+          cx={150}
+          cy={200}
+          outerRadius={90}
+          margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
+          fill="#8884d8"
+          label
+        >
+          {/* Barvy pro jednotlivé části grafu */}
+         
+          <Cell  fill="chocolate" name={t("resolved")}/>
+          <Cell fill= "cadetblue" name={t("unresolved")} />
+         
+        </Pie>
+        <Legend align="left" verticalAlign="middle" layout="vertical" />
+      </PieChart>
+
     </div>
   );
 };

@@ -6,6 +6,7 @@ import ShoppingListThumbnail from './ShoppingListThumbNail';
 import CreateListModal from './CreateListModal';
 import api from "./ApiWrapper"
 import { useTranslation } from 'react-i18next';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 const ShoppingListOverview = () => {
   const { t } = useTranslation();
 
@@ -19,6 +20,8 @@ const ShoppingListOverview = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [chartData, setChartData] = useState([]);
+  const maxDataValue = Math.max(...shoppingLists.map(list => list.items.length));
   useEffect(() => {
     const fetchShoppingLists = async () => {
       try {
@@ -26,6 +29,13 @@ const ShoppingListOverview = () => {
         const lists = await api.getShoppingLists();
         setData(lists);
         setShoppingLists(lists);
+  
+        // Příprava dat pro graf
+        const chartData = lists.map((list) => ({
+          name: list.name,
+          itemCount: list.items.length,
+        }));
+        setChartData(chartData);
       } catch (error) {
         setError(error);
         console.error(`Chyba při předávání dat: ${error.message}`);
@@ -33,10 +43,9 @@ const ShoppingListOverview = () => {
         setLoading(false);
       }
     };
-
+  
     fetchShoppingLists();
   }, []);
-
 
 
   
@@ -55,6 +64,14 @@ const ShoppingListOverview = () => {
 
      
       setShoppingLists((prevLists) => [...prevLists, addedList]);
+          const newChartData = [
+      ...chartData,
+      {
+        name: addedList.name,
+        itemCount: addedList.items.length,
+      },
+    ];
+    setChartData(newChartData);
     } catch (error) {
       
       console.error('Chyba při přidávání seznamu:', error);
@@ -64,17 +81,30 @@ const ShoppingListOverview = () => {
 
   const handleDeleteList = async (listId) => {
     try {
-     
+      const listToDelete = shoppingLists.find((list) => list.id === listId);
+  
+      if (!listToDelete) {
+        console.error(`List with ID ${listId} not found.`);
+        return;
+      }
+  
       await api.deleteShoppingList(listId);
-
-     
+  
+      // Update shoppingLists state
       const updatedLists = shoppingLists.filter((list) => list.id !== listId);
       setShoppingLists(updatedLists);
+  
+      // Update archivedLists state
       setArchivedLists(archivedLists.filter((list) => list.id !== listId));
+  
+      // Update chartData
+      const updatedChartData = chartData.filter((data) => data.name !== listToDelete.name);
+      setChartData(updatedChartData);
     } catch (error) {
       console.error(`Chyba při mazání seznamu s ID ${listId}:`, error);
     }
   };
+  
 
   console.log (shoppingLists)
 
@@ -163,6 +193,40 @@ const ShoppingListOverview = () => {
 
 
       </ul>
+      <div className="chart-container">
+      <h2>{t('chartTitle')}</h2>
+      {chartData.length > 0 ? (
+        <div>
+ 
+  <BarChart width={300} height={400} data={chartData}>
+  <XAxis dataKey="name" tick={{ opacity: 0 }} />
+  <YAxis
+    type="number"
+    domain={[0, 'auto']}
+    tickCount={maxDataValue + 1}
+    tickFormatter={(value) => Math.round(value)}
+  />
+  <Tooltip />
+  <Legend />
+  <Bar
+    dataKey="itemCount"
+    fill="#8884d8"
+    name={t('itemCount')}
+    shape={(props) => {
+      const { payload, x, y, width, height } = props;
+      if (payload.itemCount === 0) {
+        return <rect x={x} y={y - 5} width={width} height={height + 5} fill="#8884d8" />;
+      }
+      return <rect x={x} y={y} width={width} height={height} fill="#8884d8" />;
+    }}
+  />
+</BarChart>
+</div>
+  ) : (
+    <p>{t('noDataAvailable')}</p>
+  )}
+</div>
+
     </div>
   );
 };

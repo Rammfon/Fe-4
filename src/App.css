@@ -124,6 +124,7 @@ justify-content: space-between;
       }  
         
 
+ 
   #light .shopping-list-thumbnail {
     background-color:rgb(252, 229, 103);
   }
@@ -143,6 +144,9 @@ justify-content: space-between;
 #dark .shopping-list-thumbnail {
   background-color: rgb(0, 0, 0);
 }
+
+
+
 
 
 
@@ -167,7 +171,22 @@ justify-content: space-between;
     background-color: rgb(80, 27, 129);
   }
 
+#dark .cell1 {
+  background-color: #82ca9d;
+}
 
+#dark .cell2 {
+  background-color: #FF8042;
+}
+
+#light .cell1{
+background-color:  cadetblue;
+}
+
+
+#light .cell2 {
+  background-color:chocolate;
+}
 
   #dark .header {
     background-color: #1c0a1d;
@@ -213,7 +232,22 @@ justify-content: space-between;
   }
 
 
+.chart-container {
+  margin-left: 80px;
+ 
   
+
+    width: 100%; /* 100% šířky, aby se přizpůsobilo šířce rodičovského prvku */
+  }
+  
+  /* Media query pro změnu stylů v závislosti na šířce obrazovky */
+  @media screen and (min-width: 600px) {
+    .chart-container {
+      width: 80%; /* Snížení šířky na 80% pro širší obrazovky */
+    }
+  };
+
+
   @media (max-width: 600px) {
     .shopping-list-thumbnail {
         width: 100%; 

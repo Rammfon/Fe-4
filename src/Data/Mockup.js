@@ -18,7 +18,8 @@ const shoppingLists =  {
         items: [
           { itemId: 'item1', itemName: 'pečivo', resolved: false },
           { itemId: 'item2', itemName: 'mléko', resolved: false },
-          { itemId: 'item3', itemName: 'kukuřice', resolved: false }
+          { itemId: 'item3', itemName: 'kukuřice', resolved: false },
+          { itemId: 'item4', itemName: 'sója', resolved: false }
         ]
       },
       {

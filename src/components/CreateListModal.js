@@ -16,8 +16,9 @@ export default function CreateListModal({ onCreateList, toggleModal, isModalOpen
 
     const newList = {
       id: Date.now().toString(),
-      owner: { username: user },
       name: listName,
+      owner: { username: user },
+     
       isArchived: false,
       members: [{ username: user, role: 'owner' }],
       items: [],

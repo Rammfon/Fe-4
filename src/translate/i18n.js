@@ -42,6 +42,9 @@ i18n
           unresolved: "Unresolved",
           listItems: "Shopping list items:",
           addItem: "Add item",
+          chartTitle: "Overview of shopping lists",
+          itemCount: "Number of items",
+          noDataAvailable: "no data available"
         },
       },
       cs: {
@@ -81,6 +84,11 @@ i18n
           unresolved: "Nevyřešené",
           listItems: "Položky nákupního seznamu:",
           addItem: "Přidat položku",
+          chartTitle: "Přehled nákupních seznamů",
+          itemCount: "Počet položek",
+          noDataAvailable: "K dispozici nejsou žádná data"
+          
+          
 
         },
       },
